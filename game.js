@@ -37,7 +37,7 @@ let dragonObject = {
 };
 
 //Enum - used as a reference to the array index.
-const Heros = {
+const Heroes = {
   healer: 0,
   archer: 1,
   warrior: 2,
@@ -65,15 +65,15 @@ const DragonHealth = document.querySelector(".dragon-health-txt");
 
 //event listeners
 HealerImage.addEventListener("click", function () {
-  attackDragon(heroesArray[Heros.healer]);
+  attackDragon(heroesArray[Heroes.healer]);
 });
 
 ArcherImage.addEventListener("click", function () {
-  attackDragon(heroesArray[Heros.archer]);
+  attackDragon(heroesArray[Heroes.archer]);
 });
 
 WarriorImage.addEventListener("click", function () {
-  attackDragon(heroesArray[Heros.warrior]);
+  attackDragon(heroesArray[Heroes.warrior]);
 });
 
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter
