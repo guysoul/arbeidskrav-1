@@ -102,6 +102,15 @@ function defeatedDragon() {
   }
 }
 
+// checks which heroes are alive
+function heroesAlive() {
+  dragonAttack();
+  if (heroesArray[randomAttack].alive == true) {
+  } else {
+    heroesArray[randomAttack].alive = false;
+  }
+}
+
 function dragonAttack() {
-  const randomAttack = Math.floor(Math.random() * 2);
+  const randomAttack = Math.floor(Math.random() * 3);
 }
