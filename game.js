@@ -101,3 +101,7 @@ function defeatedDragon() {
     dragonObject.currentHP = 0;
   }
 }
+
+function dragonAttack() {
+  const randomAttack = Math.floor(Math.random() * 2);
+}
