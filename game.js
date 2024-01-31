@@ -107,9 +107,8 @@ function defeatedDragon() {
   }
 }
 
-
-
-function updateHeroHealth(hero, healthTextElement) { //Updating the Hero Health
+function updateHeroHealth(hero, healthTextElement) {
+  //Updating the Hero Health
   healthTextElement.innerText = `${hero.currentHP} / ${hero.maxHP}`;
 }
 
@@ -139,20 +138,12 @@ function heroesAlive() {
         updateHeroHealth(Hero, WarriorHealth);
         break;
     }
-
-    
   } else {
     heroesArray[randomAttack].alive = false;
   }
-}
-
-function defeatedHero() { 
-  if()
 }
 
 function displayMessage(message) {
   //Change to alert once testing is done
   alert(message);
 }
-
-
