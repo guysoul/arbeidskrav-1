@@ -51,7 +51,7 @@ const HealerHealth = document.querySelector("#healer-health-txt");
 const ArcherImage = document.querySelector(".archer");
 const ArcherHealthbar = document.querySelector(".archer-health");
 const ArcherName = document.querySelector("#archer-name-txt");
-const ArcherHealth = document.querySelector(".archer-health-txt");
+const ArcherHealth = document.querySelector("#archer-health-txt");
 
 const WarriorImage = document.querySelector(".warrior");
 const WarriorHealthbar = document.querySelector(".warrior-health");
@@ -79,7 +79,7 @@ WarriorImage.addEventListener("click", function () {
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter
 function attackDragon(attacker) {
   // this function attacks the dragon.
-  alert(
+  displayMessage(
     `${attacker.name} has done ${attacker.damage} damage to ${dragonObject.name}!`
   );
 
@@ -99,7 +99,7 @@ function updateDragonHealth() {
 function defeatedDragon() {
   // this displays when the dragon has been defeated.
   if (dragonObject.currentHP <= 0) {
-    alert(`Congratulations, you have won!!`);
+    displayMessage(`Congratulations, you have won!!`);
 
     DragonImage.remove();
     dragonObject.alive = false;
@@ -107,19 +107,52 @@ function defeatedDragon() {
   }
 }
 
+function updateHeroHealth(hero, healthTextElement) {
+  healthTextElement.innerText = `${hero.currentHP} / ${hero.maxHP}`;
+}
+
 // checks which heroes are alive then the dragon attack
 function heroesAlive() {
   const randomAttack = Math.floor(Math.random() * heroesArray.length);
+  const Hero = heroesArray[randomAttack]; //Reference to the object (not a new object or variable)
 
-  if (heroesArray[randomAttack].alive == true) {
-    console.log(randomAttack);
-    console.log(heroesArray[randomAttack].name);
+  if (Hero.alive == true) {
+    // console.log(randomAttack);
+    // console.log(heroesArray[randomAttack].name);
+    displayMessage(
+      `${dragonObject.name} has attacked ${heroesArray[randomAttack].name}`
+    );
+
+    switch (randomAttack) {
+      case Heroes.healer: //0
+        Hero.currentHP -= dragonObject.damage;
+        updateHeroHealth(Hero, HealerHealth);
+        break;
+
+      case Heroes.archer: //1
+        Hero.currentHP -= dragonObject.damage;
+        updateHeroHealth(Hero, ArcherHealth);
+        break;
+
+      case Heroes.warrior: //2
+        Hero.currentHP -= dragonObject.damage;
+        updateHeroHealth(Hero, WarriorHealth);
+        break;
+    }
+
+    //  []
+
     //DragonImage.addEventListener("load", function () {
     //alert(`${dragonObject.name} has attacked `);
     //});
   } else {
     heroesArray[randomAttack].alive = false;
   }
+}
+
+function displayMessage(message) {
+  //Change to alert once testing is done
+  console.log(message);
 }
 
 function randomDragonAttack() {
