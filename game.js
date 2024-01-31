@@ -112,5 +112,5 @@ function heroesAlive() {
 }
 
 function dragonAttack() {
-  const randomAttack = Math.floor(Math.random() * 3);
+  const randomAttack = Math.floor(Math.random() * 3); //random
 }
