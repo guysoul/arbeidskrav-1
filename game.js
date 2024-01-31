@@ -107,7 +107,9 @@ function defeatedDragon() {
   }
 }
 
-function updateHeroHealth(hero, healthTextElement) {
+
+
+function updateHeroHealth(hero, healthTextElement) { //Updating the Hero Health
   healthTextElement.innerText = `${hero.currentHP} / ${hero.maxHP}`;
 }
 
@@ -117,8 +119,6 @@ function heroesAlive() {
   const Hero = heroesArray[randomAttack]; //Reference to the object (not a new object or variable)
 
   if (Hero.alive == true) {
-    // console.log(randomAttack);
-    // console.log(heroesArray[randomAttack].name);
     displayMessage(
       `${dragonObject.name} has attacked ${heroesArray[randomAttack].name}`
     );
@@ -140,21 +140,19 @@ function heroesAlive() {
         break;
     }
 
-    //  []
-
-    //DragonImage.addEventListener("load", function () {
-    //alert(`${dragonObject.name} has attacked `);
-    //});
+    
   } else {
     heroesArray[randomAttack].alive = false;
   }
 }
 
-function displayMessage(message) {
-  //Change to alert once testing is done
-  console.log(message);
+function defeatedHero() { 
+  if()
 }
 
-function randomDragonAttack() {
-  const randomAttack = Math.floor(Math.random() * 3);
+function displayMessage(message) {
+  //Change to alert once testing is done
+  alert(message);
 }
+
+
