@@ -63,7 +63,7 @@ const DragonHealthbar = document.querySelector(".dragon-health");
 const DragonName = document.querySelector("#dragon-name-txt");
 const DragonHealth = document.querySelector(".dragon-health-txt");
 
-//event listeners
+//event listeners for the heroes. Click event
 HealerImage.addEventListener("click", function () {
   attackDragon(heroesArray[Heroes.healer]);
 });
@@ -78,8 +78,9 @@ WarriorImage.addEventListener("click", function () {
 
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter
 function attackDragon(attacker) {
+  // this function attacks the dragon.
   alert(
-    `${attacker.name} har gjort ${attacker.damage} skade på ${dragonObject.name}!`
+    `${attacker.name} has done ${attacker.damage} damage to ${dragonObject.name}!`
   );
 
   dragonObject.currentHP -= attacker.damage;
@@ -89,10 +90,12 @@ function attackDragon(attacker) {
 }
 
 function updateDragonHealth() {
+  // updates the dragon health after the attack.
   DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
 }
 
 function defeatedDragon() {
+  // this displays when the dragon has been defeated.
   if (dragonObject.currentHP <= 0) {
     alert(`Congratulations, you have won!!`);
 
@@ -104,13 +107,16 @@ function defeatedDragon() {
 
 // checks which heroes are alive
 function heroesAlive() {
-  dragonAttack();
+  randomDragonAttack();
   if (heroesArray[randomAttack].alive == true) {
+    DragonImage.addEventListener("load", function () {
+      alert(`${dragonObject.name} has attacked `);
+    });
   } else {
     heroesArray[randomAttack].alive = false;
   }
 }
 
-function dragonAttack() {
-  const randomAttack = Math.floor(Math.random() * 3); //random
+function randomDragonAttack() {
+  const randomAttack = Math.floor(Math.random() * 3);
 }
