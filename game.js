@@ -139,7 +139,7 @@ function heroesAlive() {
         break;
     }
   } else {
-    heroesArray[randomAttack].alive = false;
+    Hero.alive = false;
   }
 }
 
