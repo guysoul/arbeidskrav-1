@@ -7,7 +7,7 @@ let heroesArray = [
     name: "Henriette Healer",
     maxHP: 400,
     currentHP: 400,
-    damage: 800, //original value is 100
+    damage: 10, //original value is 100
     alive: true,
   },
   {
@@ -15,7 +15,7 @@ let heroesArray = [
     name: "Ariana archer",
     maxHP: 500,
     currentHP: 500,
-    damage: 400,
+    damage: 10, //original value is 400
     alive: true,
   },
   {
@@ -23,7 +23,7 @@ let heroesArray = [
     name: "Wyona Warrior",
     maxHP: 600,
     currentHP: 600,
-    damage: 400,
+    damage: 10, //original value is 400
     alive: true,
   },
 ];
@@ -92,6 +92,8 @@ function attackDragon(attacker) {
 function updateDragonHealth() {
   // updates the dragon health after the attack.
   DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+
+  heroesAlive();
 }
 
 function defeatedDragon() {
@@ -105,13 +107,16 @@ function defeatedDragon() {
   }
 }
 
-// checks which heroes are alive
+// checks which heroes are alive then the dragon attack
 function heroesAlive() {
-  randomDragonAttack();
+  const randomAttack = Math.floor(Math.random() * heroesArray.length);
+
   if (heroesArray[randomAttack].alive == true) {
-    DragonImage.addEventListener("load", function () {
-      alert(`${dragonObject.name} has attacked `);
-    });
+    console.log(randomAttack);
+    console.log(heroesArray[randomAttack].name);
+    //DragonImage.addEventListener("load", function () {
+    //alert(`${dragonObject.name} has attacked `);
+    //});
   } else {
     heroesArray[randomAttack].alive = false;
   }
