@@ -91,6 +91,7 @@ function attackDragon(attacker) {
 
 function updateDragonHealth() {
   // updates the dragon health after the attack.
+
   DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
 
   heroesAlive();
@@ -137,6 +138,22 @@ function heroesAlive() {
         Hero.currentHP -= dragonObject.damage;
         updateHeroHealth(Hero, WarriorHealth);
         break;
+    }
+
+    if (Hero.currentHP <= 0) {
+      Hero.alive = false;
+      Hero.currentHP = 0;
+
+      console.log(Heroes);
+      if (Heroes == 0) {
+        HealerImage.remove();
+      } else if (Heroes == 1) {
+        ArcherImage.remove();
+      } else {
+        WarriorImage.remove();
+      }
+
+      console.log(Hero);
     }
   } else {
     Hero.alive = false;
