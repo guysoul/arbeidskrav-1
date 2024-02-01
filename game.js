@@ -7,7 +7,7 @@ let heroesArray = [
     name: "Henriette Healer",
     maxHP: 400,
     currentHP: 400,
-    damage: 10, //original value is 100
+    damage: 100, //original value is 100
     alive: true,
   },
   {
@@ -15,7 +15,7 @@ let heroesArray = [
     name: "Ariana archer",
     maxHP: 500,
     currentHP: 500,
-    damage: 10, //original value is 400
+    damage: 400, //original value is 400
     alive: true,
   },
   {
@@ -23,7 +23,7 @@ let heroesArray = [
     name: "Wyona Warrior",
     maxHP: 600,
     currentHP: 600,
-    damage: 10, //original value is 400
+    damage: 400, //original value is 400
     alive: true,
   },
 ];
@@ -99,9 +99,9 @@ function updateDragonHealth() {
 function defeatedDragon() {
   // this displays when the dragon has been defeated.
   if (dragonObject.currentHP <= 0) {
+    DragonImage.remove();
     dragonObject.alive = false;
     dragonObject.currentHP = 0;
-    DragonImage.remove();
     displayMessage(`Congratulations, you have won!!`);
   }
 }
@@ -177,6 +177,5 @@ function allDead() {
 }
 
 function displayMessage(message) {
-  //Change to alert once testing is done
   alert(message);
 }
