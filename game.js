@@ -90,9 +90,8 @@ function attackDragon(attacker) {
 }
 
 function updateDragonHealth() {
-  // updates the dragon health after the attack.
-
-  DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+  DragonName.innerText = `${dragonObject.name}`; // display the dragon name during the attack
+  DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`; // updates the dragon health after the attack.
 
   heroesAlive();
 }
