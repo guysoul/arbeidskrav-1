@@ -99,11 +99,10 @@ function updateDragonHealth() {
 function defeatedDragon() {
   // this displays when the dragon has been defeated.
   if (dragonObject.currentHP <= 0) {
-    displayMessage(`Congratulations, you have won!!`);
-
-    DragonImage.remove();
     dragonObject.alive = false;
     dragonObject.currentHP = 0;
+    DragonImage.remove();
+    displayMessage(`Congratulations, you have won!!`);
   }
 }
 
@@ -124,38 +123,43 @@ function heroesAlive() {
 
     switch (randomAttack) {
       case Heroes.healer: //0
+        HealerName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
-        updateHeroHealth(Hero, HealerHealth);
+        if (Hero.currentHP <= 0) {
+          Hero.alive = false;
+          Hero.currentHP = 0;
+          HealerImage.remove();
+        }
+        updateHeroHealth(Hero, HealerHealth); // updates the current HP of the healer in the div tag
+
         break;
 
       case Heroes.archer: //1
+        ArcherName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
-        updateHeroHealth(Hero, ArcherHealth);
+        if (Hero.currentHP <= 0) {
+          Hero.alive = false;
+          Hero.currentHP = 0;
+          ArcherImage.remove();
+        }
+        updateHeroHealth(Hero, ArcherHealth); // updates the current HP of the archer in the div tag
+
         break;
 
       case Heroes.warrior: //2
+        WarriorName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
-        updateHeroHealth(Hero, WarriorHealth);
+        if (Hero.currentHP <= 0) {
+          Hero.alive = false;
+          Hero.currentHP = 0;
+          WarriorImage.remove();
+        }
+        updateHeroHealth(Hero, WarriorHealth); // updates the current HP of the warrior in the div tag
+
         break;
     }
-
-    if (Hero.currentHP <= 0) {
-      Hero.alive = false;
-      Hero.currentHP = 0;
-
-      console.log(Heroes);
-      if (Heroes == 0) {
-        HealerImage.remove();
-      } else if (Heroes == 1) {
-        ArcherImage.remove();
-      } else {
-        WarriorImage.remove();
-      }
-
-      console.log(Hero);
-    }
   } else {
-    Hero.alive = false;
+    displayMessage(`You have lost the game! ${dragonObject.name} has won!`);
   }
 }
 
