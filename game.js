@@ -93,7 +93,7 @@ function updateDragonHealth() {
   DragonName.innerText = `${dragonObject.name}`; // display the dragon name during the attack
   DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`; // updates the dragon health after the attack.
 
-  heroesAlive();
+  heroesAlive(); // proceed with the heroesAlive function
 }
 
 function defeatedDragon() {
@@ -116,7 +116,7 @@ function heroesAlive() {
   const randomAttack = Math.floor(Math.random() * heroesArray.length);
   const Hero = heroesArray[randomAttack]; //Reference to the object (not a new object or variable)
 
-  if (Hero.alive == true) {
+  if (Hero.alive) {
     displayMessage(
       `${dragonObject.name} has attacked ${heroesArray[randomAttack].name}`
     );
@@ -131,7 +131,6 @@ function heroesAlive() {
           HealerImage.remove();
         }
         updateHeroHealth(Hero, HealerHealth); // updates the current HP of the healer in the div tag
-
         break;
 
       case Heroes.archer: //1
@@ -143,7 +142,6 @@ function heroesAlive() {
           ArcherImage.remove();
         }
         updateHeroHealth(Hero, ArcherHealth); // updates the current HP of the archer in the div tag
-
         break;
 
       case Heroes.warrior: //2
@@ -155,12 +153,27 @@ function heroesAlive() {
           WarriorImage.remove();
         }
         updateHeroHealth(Hero, WarriorHealth); // updates the current HP of the warrior in the div tag
-
         break;
     }
   } else {
+    heroesAlive();
+  }
+
+  //statement to check all dead heroes
+  if (allDead()) {
     displayMessage(`You have lost the game! ${dragonObject.name} has won!`);
   }
+}
+
+// function for allDead heroes
+function allDead() {
+  var counterDead = 0;
+  for (var i = 0; i < heroesArray.length; i++) {
+    if (!heroesArray[i].alive) {
+      counterDead++;
+    }
+  }
+  return counterDead == heroesArray.length;
 }
 
 function displayMessage(message) {
