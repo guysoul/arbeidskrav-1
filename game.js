@@ -63,7 +63,7 @@ const DragonHealthbar = document.querySelector(".dragon-health");
 const DragonName = document.querySelector("#dragon-name-txt");
 const DragonHealth = document.querySelector(".dragon-health-txt");
 
-//event listeners for the heroes. Click event
+//event listeners for the heroes. Click/eventListener which calls the function attackDragon
 HealerImage.addEventListener("click", function () {
   attackDragon(heroesArray[Heroes.healer]);
 });
@@ -76,7 +76,7 @@ WarriorImage.addEventListener("click", function () {
   attackDragon(heroesArray[Heroes.warrior]);
 });
 
-//passing the object of the attackers/Hero to the dragon - using the attacker parameter
+//passing the object of the attackers/Hero to the dragon - using the attacker parameter - 1st requirement
 function attackDragon(attacker) {
   // this function attacks the dragon.
   displayMessage(
@@ -97,11 +97,11 @@ function updateDragonHealth() {
 }
 
 function defeatedDragon() {
-  // this displays when the dragon has been defeated.
+  // this displays when the dragon has been defeated. 5th requirement
   if (dragonObject.currentHP <= 0) {
-    DragonImage.remove();
     dragonObject.alive = false;
     dragonObject.currentHP = 0;
+    DragonImage.remove();
     displayMessage(`Congratulations, you have won!!`);
   }
 }
@@ -111,7 +111,7 @@ function updateHeroHealth(hero, healthTextElement) {
   healthTextElement.innerText = `${hero.currentHP} / ${hero.maxHP}`;
 }
 
-// checks which heroes are alive then the dragon attack
+// checks which heroes are alive then the dragon attacks - 2nd requirement and 3rd requirement
 function heroesAlive() {
   const randomAttack = Math.floor(Math.random() * heroesArray.length);
   const Hero = heroesArray[randomAttack]; //Reference to the object (not a new object or variable)
@@ -159,13 +159,13 @@ function heroesAlive() {
     heroesAlive();
   }
 
-  //statement to check all dead heroes
+  //statement to check all dead heroes - calls the function allDead within Heroes Alive function
   if (allDead()) {
     displayMessage(`You have lost the game! ${dragonObject.name} has won!`);
   }
 }
 
-// function for allDead heroes
+// function for allDead heroes - 4th requirement
 function allDead() {
   var counterDead = 0;
   for (var i = 0; i < heroesArray.length; i++) {
