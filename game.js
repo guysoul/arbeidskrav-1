@@ -36,7 +36,7 @@ let dragonObject = {
   alive: true,
 };
 
-//Enum - used as a reference to the array index.
+//Enum - used as a reference to the array index. https://www.sohamkamani.com/javascript/enums/#defining-enums-as-object-keys
 const Heroes = {
   healer: 0,
   archer: 1,
@@ -63,15 +63,14 @@ const DragonHealthbar = document.querySelector(".dragon-health");
 const DragonName = document.querySelector("#dragon-name-txt");
 const DragonHealth = document.querySelector(".dragon-health-txt");
 
+//anonymous function on eventlisteners.
 const attack = function () {
   attackDragon(heroesArray[Heroes.warrior]);
 };
 
-//event listeners for the heroes. Click/eventListener which calls the function attackDragon
+//event listeners for the heroes. Click/eventListener which calls the function attackDragon through "attack" variable with anonymous function.
 HealerImage.addEventListener("click", attack);
-
 ArcherImage.addEventListener("click", attack);
-
 WarriorImage.addEventListener("click", attack);
 
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter - 1st requirement
@@ -81,7 +80,7 @@ function attackDragon(attacker) {
     `${attacker.name} has done ${attacker.damage} damage to ${dragonObject.name}!`
   );
 
-  dragonObject.currentHP -= attacker.damage;
+  dragonObject.currentHP -= attacker.damage; //updates Dragon's current HP after it has been attacked by one of the Heroes.
 
   if (isDragonDefeated()) {
     dragonObject.alive = false;
@@ -180,11 +179,13 @@ function allDead() {
 }
 
 function disableHeroes() {
+  // function to disable the clicking of heroes after it has won the game.
   HealerImage.removeEventListener("click", attack);
   ArcherImage.removeEventListener("click", attack);
   WarriorImage.removeEventListener("click", attack);
 }
 
 function displayMessage(message) {
+  //function to display message.
   alert(message);
 }
