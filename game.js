@@ -32,7 +32,7 @@ let dragonObject = {
   name: "Daar Dragon",
   maxHP: 2000,
   currentHP: 2000,
-  damage: 800,
+  damage: 200,
   alive: true,
 };
 
@@ -63,18 +63,16 @@ const DragonHealthbar = document.querySelector(".dragon-health");
 const DragonName = document.querySelector("#dragon-name-txt");
 const DragonHealth = document.querySelector(".dragon-health-txt");
 
-//event listeners for the heroes. Click/eventListener which calls the function attackDragon
-HealerImage.addEventListener("click", function () {
-  attackDragon(heroesArray[Heroes.healer]);
-});
-
-ArcherImage.addEventListener("click", function () {
-  attackDragon(heroesArray[Heroes.archer]);
-});
-
-WarriorImage.addEventListener("click", function () {
+const attack = function () {
   attackDragon(heroesArray[Heroes.warrior]);
-});
+};
+
+//event listeners for the heroes. Click/eventListener which calls the function attackDragon
+HealerImage.addEventListener("click", attack);
+
+ArcherImage.addEventListener("click", attack);
+
+WarriorImage.addEventListener("click", attack);
 
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter - 1st requirement
 function attackDragon(attacker) {
@@ -93,9 +91,15 @@ function attackDragon(attacker) {
     displayMessage(`Congratulations, you have won!!`);
 
     //disable all other onclick.
+    disableHeroes(this);
   } else {
     updateDragonHealth();
     heroesAlive(); // proceed with the heroesAlive function
+  }
+
+  //statement to check all dead heroes - calls the function allDead within Heroes Alive function
+  if (allDead()) {
+    displayMessage(`You have lost the game! ${dragonObject.name} has won!`);
   }
 }
 
@@ -162,11 +166,6 @@ function heroesAlive() {
   } else {
     heroesAlive();
   }
-
-  //statement to check all dead heroes - calls the function allDead within Heroes Alive function
-  if (allDead()) {
-    displayMessage(`You have lost the game! ${dragonObject.name} has won!`);
-  }
 }
 
 // function for allDead heroes - 4th requirement
@@ -178,6 +177,12 @@ function allDead() {
     }
   }
   return counterDead == heroesArray.length;
+}
+
+function disableHeroes() {
+  HealerImage.removeEventListener("click", attack);
+  ArcherImage.removeEventListener("click", attack);
+  WarriorImage.removeEventListener("click", attack);
 }
 
 function displayMessage(message) {
