@@ -64,18 +64,27 @@ const DragonName = document.querySelector("#dragon-name-txt");
 const DragonHealth = document.querySelector(".dragon-health-txt");
 
 //anonymous function on eventlisteners.
-const attack = function () {
+const attackHealer = function () {
+  attackDragon(heroesArray[Heroes.healer]);
+};
+
+const attackArcher = function () {
+  attackDragon(heroesArray[Heroes.archer]);
+};
+
+const attackWarrior = function () {
   attackDragon(heroesArray[Heroes.warrior]);
 };
 
 //event listeners for the heroes. Click/eventListener which calls the function attackDragon through "attack" variable with anonymous function.
-HealerImage.addEventListener("click", attack);
-ArcherImage.addEventListener("click", attack);
-WarriorImage.addEventListener("click", attack);
+HealerImage.addEventListener("click", attackHealer);
+ArcherImage.addEventListener("click", attackArcher);
+WarriorImage.addEventListener("click", attackWarrior);
 
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter - 1st requirement
 function attackDragon(attacker) {
   // this function attacks the dragon.
+
   displayMessage(
     `${attacker.name} has done ${attacker.damage} damage to ${dragonObject.name}!`
   );
@@ -180,9 +189,9 @@ function allDead() {
 
 function disableHeroes() {
   // function to disable the clicking of heroes after it has won the game.
-  HealerImage.removeEventListener("click", attack);
-  ArcherImage.removeEventListener("click", attack);
-  WarriorImage.removeEventListener("click", attack);
+  HealerImage.removeEventListener("click", attackHealer);
+  ArcherImage.removeEventListener("click", attackArcher);
+  WarriorImage.removeEventListener("click", attackWarrior);
 }
 
 function displayMessage(message) {
