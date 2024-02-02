@@ -84,7 +84,6 @@ WarriorImage.addEventListener("click", attackWarrior);
 //passing the object of the attackers/Hero to the dragon - using the attacker parameter - 1st requirement
 function attackDragon(attacker) {
   // this function attacks the dragon.
-
   displayMessage(
     `${attacker.name} has done ${attacker.damage} damage to ${dragonObject.name}!`
   );
@@ -139,8 +138,8 @@ function heroesAlive() {
 
     switch (randomAttack) {
       case Heroes.healer: //0
-        HealerName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
+        HealerName.innerText = `${Hero.name}`;
         if (Hero.currentHP <= 0) {
           Hero.alive = false;
           Hero.currentHP = 0;
@@ -150,8 +149,8 @@ function heroesAlive() {
         break;
 
       case Heroes.archer: //1
-        ArcherName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
+        ArcherName.innerText = `${Hero.name}`;
         if (Hero.currentHP <= 0) {
           Hero.alive = false;
           Hero.currentHP = 0;
@@ -161,8 +160,8 @@ function heroesAlive() {
         break;
 
       case Heroes.warrior: //2
-        WarriorName.innerText = `${Hero.name}`;
         Hero.currentHP -= dragonObject.damage;
+        WarriorName.innerText = `${Hero.name}`;
         if (Hero.currentHP <= 0) {
           Hero.alive = false;
           Hero.currentHP = 0;
