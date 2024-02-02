@@ -32,7 +32,7 @@ let dragonObject = {
   name: "Daar Dragon",
   maxHP: 2000,
   currentHP: 2000,
-  damage: 200,
+  damage: 800,
   alive: true,
 };
 
@@ -85,25 +85,29 @@ function attackDragon(attacker) {
 
   dragonObject.currentHP -= attacker.damage;
 
-  defeatedDragon();
-  updateDragonHealth();
+  if (isDragonDefeated()) {
+    dragonObject.alive = false;
+    dragonObject.currentHP = 0;
+    DragonImage.remove();
+    updateDragonHealth();
+    displayMessage(`Congratulations, you have won!!`);
+
+    //disable all other onclick.
+  } else {
+    updateDragonHealth();
+    heroesAlive(); // proceed with the heroesAlive function
+  }
 }
 
 function updateDragonHealth() {
   DragonName.innerText = `${dragonObject.name}`; // display the dragon name during the attack
   DragonHealth.innerText = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`; // updates the dragon health after the attack.
-
-  heroesAlive(); // proceed with the heroesAlive function
 }
 
-function defeatedDragon() {
+function isDragonDefeated() {
   // this displays when the dragon has been defeated. 5th requirement
-  if (dragonObject.currentHP <= 0) {
-    dragonObject.alive = false;
-    dragonObject.currentHP = 0;
-    DragonImage.remove();
-    displayMessage(`Congratulations, you have won!!`);
-  }
+  const dragonDefeated = dragonObject.currentHP <= 0;
+  return dragonDefeated;
 }
 
 function updateHeroHealth(hero, healthTextElement) {
